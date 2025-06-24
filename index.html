@@ -135,22 +135,22 @@
                     <!-- Language Switcher -->
                     <div class="relative">
                         <button id="languageSwitcher" class="flex items-center gap-2 px-3 py-2 text-secondary hover:text-primary transition-colors">
-                            <!-- <span id="currentFlag">🇷🇺</span> -->
+                            <span id="currentFlag">🇷🇺</span>
                             <span id="currentLangCode" class="text-sm font-medium">RU</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
                         <div id="languageDropdown" class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-100 hidden z-50">
-                            <button onclick="switchLanguage('')" class="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors">
+                            <button onclick="switchLanguage('ru')" class="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors">
                                 <span></span>
                                 <span class="text-sm">Русский</span>
                             </button>
-                            <button onclick="switchLanguage('')" class="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors">
+                            <button onclick="switchLanguage('en')" class="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors">
                                 <span></span>
                                 <span class="text-sm">English</span>
                             </button>
-                            <button onclick="switchLanguage('')" class="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors">
+                            <button onclick="switchLanguage('tj')" class="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors">
                                 <span></span>
                                 <span class="text-sm">Тоҷикӣ</span>
                             </button>
@@ -479,67 +479,6 @@
                     Большинство задач решаю удалённо. Встречи по Zoom/Telegram. 
                     Для крупных проектов возможны командировки.
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEO Content Section -->
-    <section class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">
-                Ведущий программист в Таджикистане - Качественные IT-решения
-            </h2>
-            <div class="prose prose-lg max-w-none text-gray-600">
-                <p class="text-center mb-6">
-                    Ищете <strong>надежного программиста в Таджикистане</strong>? Комил - ваш выбор для создания современных IT-решений. 
-                    Специализируемся на <strong>разработке сайтов в Душанбе</strong>, автоматизации бизнес-процессов и внедрении передовых технологий.
-                </p>
-                
-                <div class="grid md:grid-cols-2 gap-8 mt-8">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">🚀 Почему выбирают нас:</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li>✅ 7+ лет опыта в IT-сфере</li>
-                            <li>✅ 50+ успешно реализованных проектов</li>
-                            <li>✅ Работаем по всему Таджикистану</li>
-                            <li>✅ Гарантия качества и сроков</li>
-                            <li>✅ Техническая поддержка 24/7</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">💼 Наши специализации:</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li>🌐 Создание сайтов и веб-приложений</li>
-                            <li>⚡ Автоматизация бизнес-процессов</li>
-                            <li>🔐 Системы видеонаблюдения и безопасности</li>
-                            <li>🖥️ Настройка IT-инфраструктуры</li>
-                            <li>🔧 IoT решения и электроника</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="bg-blue-50 rounded-lg p-6 mt-8">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3 text-center">
-                        📍 Обслуживаем клиентов по всему Таджикистану
-                    </h3>
-                    <p class="text-center text-sm text-gray-600">
-                        <strong>Душанбе • Худжанд • Куляб • Курган-Тюбе • Истаринан • Вахдат • Турсунзаде</strong><br>
-                        Работаем удаленно и выезжаем на объекты для крупных проектов
-                    </p>
-                </div>
-                
-                <div class="text-center mt-8">
-                    <p class="text-lg font-medium text-gray-900">
-                        Готовы обсудить ваш проект? Свяжитесь с нами прямо сейчас!
-                    </p>
-                    <div class="flex justify-center items-center gap-4 mt-4 text-sm">
-                        <span>📞 <a href="tel:+992917700007" class="text-blue-600 hover:underline">+992 91 770 0007</a></span>
-                        <span>•</span>
-                        <span>💬 <a href="https://t.me/rkomili" class="text-blue-600 hover:underline">@rkomili</a></span>
-                        <span>•</span>
-                        <span>📱 <a href="https://wa.me/992917700007" class="text-blue-600 hover:underline">WhatsApp</a></span>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -955,7 +894,7 @@
         }
 
         function updateLanguageUI(lang) {
-            const flags = { ru: '🇷🇺', en: '🇺🇸', tj: '🇹🇯' };
+            const flags = { ru: '', en: '', tj: '' };
             const codes = { ru: 'RU', en: 'EN', tj: 'TJ' };
             
             document.getElementById('currentFlag').textContent = flags[lang];
