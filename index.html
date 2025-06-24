@@ -1,10 +1,842 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Мой сайт</title>
-  </head>
-  <body>
-    <h1>Привет от Комила!</h1>
-  </body>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комил - Инженер-программист | IT-услуги и автоматизация</title>
+    <meta name="description" content="Комил - инженер программист с опытом 7+ лет. Создаю сайты, автоматизирую процессы, предоставляю IT-консультации. Звоните прямо сейчас!">
+    <meta name="keywords" content="инженер программист, создание сайта, IT-услуги, фрилансер программист, автоматизация процессов, веб-разработка">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#3B82F6',
+                        'secondary': '#64748B',
+                        'accent': '#1E40AF'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-white text-gray-800">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold text-primary">Комил</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-secondary hover:text-primary transition-colors" data-i18n="nav_about">О себе</a>
+                    <a href="#services" class="text-secondary hover:text-primary transition-colors" data-i18n="nav_services">Услуги</a>
+                    <a href="#companies" class="text-secondary hover:text-primary transition-colors" data-i18n="nav_companies">Клиенты</a>
+                    <a href="#contact" class="text-secondary hover:text-primary transition-colors" data-i18n="nav_contact">Контакты</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Language Switcher -->
+                    <div class="relative">
+                        <button id="languageSwitcher" class="flex items-center gap-2 px-3 py-2 text-secondary hover:text-primary transition-colors">
+                            <span id="currentFlag">🇷🇺</span>
+                            <span id="currentLangCode" class="text-sm font-medium">RU</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="languageDropdown" class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-100 hidden z-50">
+                            <button onclick="switchLanguage('ru')" class="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors">
+                                <span>🇷🇺</span>
+                                <span class="text-sm">Русский</span>
+                            </button>
+                            <button onclick="switchLanguage('en')" class="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors">
+                                <span>🇺🇸</span>
+                                <span class="text-sm">English</span>
+                            </button>
+                            <button onclick="switchLanguage('tj')" class="flex items-center gap-3 w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors">
+                                <span>🇹🇯</span>
+                                <span class="text-sm">Тоҷикӣ</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button onclick="openContactModal()" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-accent transition-colors">
+                        <span data-i18n="contact_button">Связаться</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-blue-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="flex-1 text-center lg:text-left">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                        <span data-i18n="hero_greeting">Привет, я</span> <span class="text-primary">Комил</span><br>
+                        <span class="text-secondary text-3xl sm:text-4xl lg:text-5xl" data-i18n="hero_title">инженер-программист</span>
+                    </h1>
+                    <p class="text-xl text-secondary mb-8 max-w-2xl" data-i18n="hero_description">
+                        Создаю надёжные и понятные цифровые решения. Помогаю бизнесам расти с помощью современных технологий.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button onclick="callPhone()" class="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-accent transition-colors flex items-center justify-center gap-2" data-i18n="hero_call">
+                            📞 Позвонить мне
+                        </button>
+                        <button onclick="openTelegram()" class="border-2 border-primary text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-2" data-i18n="hero_telegram">
+                            💬 Написать в Telegram
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-1 max-w-md">
+                    <div class="relative">
+                        <div class="w-80 h-80 mx-auto bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center shadow-2xl">
+                            <div class="w-72 h-72 bg-white rounded-full flex items-center justify-center">
+                                <div class="text-8xl">👨‍💻</div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-full shadow-lg">
+                            <div class="text-2xl">⚡</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-12" data-i18n="about_title">Обо мне</h2>
+            <div class="bg-gray-50 rounded-2xl p-8 sm:p-12">
+                <p class="text-lg text-secondary leading-relaxed mb-8 text-center" data-i18n="about_intro">
+                    Меня зовут <strong class="text-primary">Комил</strong>. Уже более <strong class="text-primary">7 лет</strong> я с командой помогаю бизнесам, организациям и частным клиентам внедрять технологии, которые упрощают жизнь и делают работу эффективнее.
+                </p>
+                
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3" data-i18n="about_what_we_do">
+                        💡 Что мы делаем:
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <span class="text-primary font-bold">—</span>
+                                <p class="text-secondary">Разрабатываем онлайн-системы и веб-платформы для автоматизации бизнеса</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-primary font-bold">—</span>
+                                <p class="text-secondary">Настраиваем корпоративные сети, серверы и облачные решения</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-primary font-bold">—</span>
+                                <p class="text-secondary">Автоматизируем системы безопасности — от частных домов до крупных предприятий: видеонаблюдение, контроль доступа, охранные и тревожные системы</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <span class="text-primary font-bold">—</span>
+                                <p class="text-secondary">Работаем с электроникой и собираем под ключ любые устройства — от датчиков до промышленных контроллеров</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-primary font-bold">—</span>
+                                <p class="text-secondary">Настраиваем и сопровождаем IT-инфраструктуру "под ключ" — от офиса до производства: сервера, рабочие станции, резервное копирование, защита данных, удалённый доступ и техническая поддержка</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-primary font-bold">—</span>
+                                <p class="text-secondary">Интегрируем оборудование, ПО и базы данных в единое, удобное для вас решение</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 mb-8 border-l-4 border-primary">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                        🧠 Наш принцип — "никакой магии"
+                    </h3>
+                    <p class="text-secondary leading-relaxed">
+                        Только понятные и нужные решения. Мы объясняем сложное простыми словами, учитываем цели клиента и предлагаем только то, что действительно работает.
+                    </p>
+                </div>
+
+                <p class="text-lg text-secondary leading-relaxed text-center">
+                    Наша команда — это специалисты из разных областей: разработчики, системные инженеры, электроники и сетевые администраторы. Вместе мы реализуем проекты любой сложности: от простой автоматизации до комплексных цифровых платформ.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-12" data-i18n="services_title">Мои услуги</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Service 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-4">🌐</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-i18n="service1_title">Сайт под ключ</h3>
+                    <p class="text-secondary text-sm mb-4" data-i18n="service1_desc">
+                        Создание сайта, понятного для вас и ваших клиентов. От идеи до запуска — берю всё на себя.
+                    </p>
+                    <ul class="text-xs text-secondary space-y-1">
+                        <li data-i18n="service1_feat1">✓ Современный дизайн</li>
+                        <li data-i18n="service1_feat2">✓ Работает на всех устройствах</li>
+                        <li data-i18n="service1_feat3">✓ Быстрая загрузка</li>
+                        <li data-i18n="service1_feat4">✓ Легко обновлять</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-i18n="service2_title">Автоматизация</h3>
+                    <p class="text-secondary text-sm mb-4" data-i18n="service2_desc">
+                        Автоматизирую рутинные задачи — вы экономите время и деньги, сосредотачиваясь на важном.
+                    </p>
+                    <ul class="text-xs text-secondary space-y-1">
+                        <li data-i18n="service2_feat1">✓ Обработка данных</li>
+                        <li data-i18n="service2_feat2">✓ Интеграция систем</li>
+                        <li data-i18n="service2_feat3">✓ Отчёты и аналитика</li>
+                        <li data-i18n="service2_feat4">✓ Экономия времени</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-4">💡</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-i18n="service3_title">IT-консультации</h3>
+                    <p class="text-secondary text-sm mb-4" data-i18n="service3_desc">
+                        Объясняю техническое простым языком и предлагаю оптимальные решения для вашего бизнеса.
+                    </p>
+                    <ul class="text-xs text-secondary space-y-1">
+                        <li data-i18n="service3_feat1">✓ Аудит текущих систем</li>
+                        <li data-i18n="service3_feat2">✓ Планирование развития</li>
+                        <li data-i18n="service3_feat3">✓ Выбор технологий</li>
+                        <li data-i18n="service3_feat4">✓ Понятные рекомендации</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-4">🔐</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-i18n="service4_title">Системы безопасности</h3>
+                    <p class="text-secondary text-sm mb-4" data-i18n="service4_desc">
+                        Видеонаблюдение, контроль доступа, охранные системы от частных домов до крупных предприятий.
+                    </p>
+                    <ul class="text-xs text-secondary space-y-1">
+                        <li data-i18n="service4_feat1">✓ Видеонаблюдение</li>
+                        <li data-i18n="service4_feat2">✓ Контроль доступа</li>
+                        <li data-i18n="service4_feat3">✓ Охранные системы</li>
+                        <li data-i18n="service4_feat4">✓ Удалённый мониторинг</li>
+                    </ul>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-4">🖥️</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-i18n="service5_title">IT-инфраструктура</h3>
+                    <p class="text-secondary text-sm mb-4" data-i18n="service5_desc">
+                        Настройка серверов, сетей, систем безопасности и резервного копирования для вашего бизнеса.
+                    </p>
+                    <ul class="text-xs text-secondary space-y-1">
+                        <li data-i18n="service5_feat1">✓ Настройка серверов</li>
+                        <li data-i18n="service5_feat2">✓ Сетевая безопасность</li>
+                        <li data-i18n="service5_feat3">✓ Резервное копирование</li>
+                        <li data-i18n="service5_feat4">✓ Техподдержка 24/7</li>
+                    </ul>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-3xl mb-4">🔧</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3" data-i18n="service6_title">Электроника и IoT</h3>
+                    <p class="text-secondary text-sm mb-4" data-i18n="service6_desc">
+                        Разработка и сборка электронных устройств, датчиков, контроллеров и IoT-решений под ключ.
+                    </p>
+                    <ul class="text-xs text-secondary space-y-1">
+                        <li data-i18n="service6_feat1">✓ Промышленные контроллеры</li>
+                        <li data-i18n="service6_feat2">✓ IoT-датчики</li>
+                        <li data-i18n="service6_feat3">✓ Автоматизация производства</li>
+                        <li data-i18n="service6_feat4">✓ Умный дом</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section id="companies" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-8" data-i18n="companies_title">Доверяют профессионалу</h2>
+            <p class="text-xl text-secondary text-center mb-12 max-w-3xl mx-auto" data-i18n="companies_desc">
+                Более 50 успешных проектов для компаний разного масштаба — от стартапов до крупного бизнеса
+            </p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center mb-12">
+                
+                <!-- Company 1 - Tech Startup -->
+                <div class="bg-white border-2 border-gray-100 rounded-xl p-6 hover:border-primary transition-colors w-full h-24 flex items-center justify-center group">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-primary group-hover:scale-110 transition-transform">TechFlow</div>
+                        <div class="text-xs text-secondary">Стартап</div>
+                    </div>
+                </div>
+
+                <!-- Company 2 - E-commerce -->
+                <div class="bg-white border-2 border-gray-100 rounded-xl p-6 hover:border-primary transition-colors w-full h-24 flex items-center justify-center group">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-green-600 group-hover:scale-110 transition-transform">MarketPro</div>
+                        <div class="text-xs text-secondary">E-commerce</div>
+                    </div>
+                </div>
+
+                <!-- Company 3 - Consulting -->
+                <div class="bg-white border-2 border-gray-100 rounded-xl p-6 hover:border-primary transition-colors w-full h-24 flex items-center justify-center group">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-purple-600 group-hover:scale-110 transition-transform">BizConsult</div>
+                        <div class="text-xs text-secondary">Консалтинг</div>
+                    </div>
+                </div>
+
+                <!-- Company 4 - Restaurant -->
+                <div class="bg-white border-2 border-gray-100 rounded-xl p-6 hover:border-primary transition-colors w-full h-24 flex items-center justify-center group">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-orange-600 group-hover:scale-110 transition-transform">FoodZone</div>
+                        <div class="text-xs text-secondary">Ресторан</div>
+                    </div>
+                </div>
+
+                <!-- Company 5 - Medical -->
+                <div class="bg-white border-2 border-gray-100 rounded-xl p-6 hover:border-primary transition-colors w-full h-24 flex items-center justify-center group">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-red-600 group-hover:scale-110 transition-transform">MedCenter</div>
+                        <div class="text-xs text-secondary">Медицина</div>
+                    </div>
+                </div>
+
+                <!-- Company 6 - Manufacturing -->
+                <div class="bg-white border-2 border-gray-100 rounded-xl p-6 hover:border-primary transition-colors w-full h-24 flex items-center justify-center group">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-gray-700 group-hover:scale-110 transition-transform">IndusPro</div>
+                        <div class="text-xs text-secondary">Производство</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid md:grid-cols-3 gap-8 bg-gray-50 rounded-2xl p-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">50+</div>
+                    <div class="text-secondary" data-i18n="stats_projects">Успешных проектов</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">7</div>
+                    <div class="text-secondary" data-i18n="stats_experience">Лет опыта</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">100%</div>
+                    <div class="text-secondary" data-i18n="stats_clients">Довольных клиентов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-primary text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-8" data-i18n="contact_title">Готовы начать проект?</h2>
+            <p class="text-xl text-blue-100 mb-12" data-i18n="contact_desc">
+                Свяжитесь со мной удобным способом — отвечу в течение часа!
+            </p>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <button onclick="callPhone()" class="bg-white text-primary p-6 rounded-xl hover:bg-blue-50 transition-colors">
+                    <div class="text-3xl mb-2">📞</div>
+                    <div class="font-semibold" data-i18n="contact_call">Позвонить</div>
+                    <div class="text-sm text-secondary">+7 (XXX) XXX-XX-XX</div>
+                </button>
+                
+                <button onclick="openTelegram()" class="bg-white text-primary p-6 rounded-xl hover:bg-blue-50 transition-colors">
+                    <div class="text-3xl mb-2">💬</div>
+                    <div class="font-semibold">Telegram</div>
+                    <div class="text-sm text-secondary">@komil_dev</div>
+                </button>
+                
+                <button onclick="openWhatsApp()" class="bg-white text-primary p-6 rounded-xl hover:bg-blue-50 transition-colors">
+                    <div class="text-3xl mb-2">📱</div>
+                    <div class="font-semibold">WhatsApp</div>
+                    <div class="text-sm text-secondary" data-i18n="contact_fast_reply">Быстрый ответ</div>
+                </button>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                <h3 class="text-2xl font-bold mb-4" data-i18n="contact_work_area">Работаю по всей России</h3>
+                <p class="text-blue-100" data-i18n="contact_work_desc">
+                    Большинство задач решаю удалённо. Встречи по Zoom/Skype. 
+                    Для крупных проектов возможны командировки.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="text-2xl font-bold text-primary mb-4">Комил</div>
+            <p class="text-gray-400 mb-4" data-i18n="footer_subtitle">Инженер-программист • IT-консультант • Фрилансер</p>
+            <p class="text-sm text-gray-500" data-i18n="footer_copyright">
+                © 2024 Все права защищены • Сделано с ❤️ для вашего бизнеса
+            </p>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 m-4 max-w-md w-full">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center" data-i18n="modal_title">Свяжитесь со мной</h3>
+            <div class="space-y-4">
+                <button onclick="callPhone()" class="w-full bg-primary text-white p-4 rounded-lg hover:bg-accent transition-colors flex items-center justify-center gap-3" data-i18n="modal_call">
+                    📞 Позвонить: +7 (XXX) XXX-XX-XX
+                </button>
+                <button onclick="openTelegram()" class="w-full border-2 border-primary text-primary p-4 rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center justify-center gap-3">
+                    💬 Telegram: @komil_dev
+                </button>
+                <button onclick="openWhatsApp()" class="w-full bg-green-500 text-white p-4 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center gap-3">
+                    📱 WhatsApp
+                </button>
+            </div>
+            <button onclick="closeContactModal()" class="w-full mt-6 text-gray-500 hover:text-gray-700 transition-colors" data-i18n="modal_close">
+                Закрыть
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        // Translations object
+        const translations = {
+            ru: {
+                // Navigation
+                nav_about: "О себе",
+                nav_services: "Услуги",
+                nav_companies: "Клиенты", 
+                nav_contact: "Контакты",
+                contact_button: "Связаться",
+                
+                // Hero section
+                hero_greeting: "Привет, я",
+                hero_title: "инженер-программист",
+                hero_description: "Создаю надёжные и понятные цифровые решения. Помогаю бизнесам расти с помощью современных технологий.",
+                hero_call: "📞 Позвонить мне",
+                hero_telegram: "💬 Написать в Telegram",
+                
+                // About section
+                about_title: "Обо мне",
+                about_intro: "Меня зовут <strong class=\"text-primary\">Комил</strong>. Уже более <strong class=\"text-primary\">7 лет</strong> я с командой помогаю бизнесам, организациям и частным клиентам внедрять технологии, которые упрощают жизнь и делают работу эффективнее.",
+                about_what_we_do: "💡 Что мы делаем:",
+                
+                // Services
+                services_title: "Мои услуги",
+                service1_title: "Сайт под ключ",
+                service1_desc: "Создание сайта, понятного для вас и ваших клиентов. От идеи до запуска — берю всё на себя.",
+                service1_feat1: "✓ Современный дизайн",
+                service1_feat2: "✓ Работает на всех устройствах",
+                service1_feat3: "✓ Быстрая загрузка",
+                service1_feat4: "✓ Легко обновлять",
+                
+                service2_title: "Автоматизация",
+                service2_desc: "Автоматизирую рутинные задачи — вы экономите время и деньги, сосредотачиваясь на важном.",
+                service2_feat1: "✓ Обработка данных",
+                service2_feat2: "✓ Интеграция систем",
+                service2_feat3: "✓ Отчёты и аналитика",
+                service2_feat4: "✓ Экономия времени",
+                
+                service3_title: "IT-консультации",
+                service3_desc: "Объясняю техническое простым языком и предлагаю оптимальные решения для вашего бизнеса.",
+                service3_feat1: "✓ Аудит текущих систем",
+                service3_feat2: "✓ Планирование развития",
+                service3_feat3: "✓ Выбор технологий",
+                service3_feat4: "✓ Понятные рекомендации",
+                
+                service4_title: "Системы безопасности",
+                service4_desc: "Видеонаблюдение, контроль доступа, охранные системы от частных домов до крупных предприятий.",
+                service4_feat1: "✓ Видеонаблюдение",
+                service4_feat2: "✓ Контроль доступа",
+                service4_feat3: "✓ Охранные системы",
+                service4_feat4: "✓ Удалённый мониторинг",
+                
+                service5_title: "IT-инфраструктура",
+                service5_desc: "Настройка серверов, сетей, систем безопасности и резервного копирования для вашего бизнеса.",
+                service5_feat1: "✓ Настройка серверов",
+                service5_feat2: "✓ Сетевая безопасность",
+                service5_feat3: "✓ Резервное копирование",
+                service5_feat4: "✓ Техподдержка 24/7",
+                
+                service6_title: "Электроника и IoT",
+                service6_desc: "Разработка и сборка электронных устройств, датчиков, контроллеров и IoT-решений под ключ.",
+                service6_feat1: "✓ Промышленные контроллеры",
+                service6_feat2: "✓ IoT-датчики",
+                service6_feat3: "✓ Автоматизация производства",
+                service6_feat4: "✓ Умный дом",
+                
+                // Companies
+                companies_title: "Доверяют профессионалу",
+                companies_desc: "Более 50 успешных проектов для компаний разного масштаба — от стартапов до крупного бизнеса",
+                stats_projects: "Успешных проектов",
+                stats_experience: "Лет опыта",
+                stats_clients: "Довольных клиентов",
+                
+                // Contact
+                contact_title: "Готовы начать проект?",
+                contact_desc: "Свяжитесь со мной удобным способом — отвечу в течение часа!",
+                contact_call: "Позвонить",
+                contact_fast_reply: "Быстрый ответ",
+                contact_work_area: "Работаю по всей России",
+                contact_work_desc: "Большинство задач решаю удалённо. Встречи по Zoom/Skype. Для крупных проектов возможны командировки.",
+                
+                // Footer
+                footer_subtitle: "Инженер-программист • IT-консультант • Фрилансер",
+                footer_copyright: "© 2024 Все права защищены • Сделано с ❤️ для вашего бизнеса",
+                
+                // Modal
+                modal_title: "Свяжитесь со мной",
+                modal_call: "📞 Позвонить: +7 (XXX) XXX-XX-XX",
+                modal_close: "Закрыть"
+            },
+            
+            en: {
+                // Navigation
+                nav_about: "About",
+                nav_services: "Services",
+                nav_companies: "Clients",
+                nav_contact: "Contact",
+                contact_button: "Contact",
+                
+                // Hero section
+                hero_greeting: "Hi, I'm",
+                hero_title: "software engineer",
+                hero_description: "I create reliable and user-friendly digital solutions. I help businesses grow with modern technologies.",
+                hero_call: "📞 Call me",
+                hero_telegram: "💬 Write to Telegram",
+                
+                // About section
+                about_title: "About me",
+                about_intro: "My name is <strong class=\"text-primary\">Komil</strong>. For more than <strong class=\"text-primary\">7 years</strong> I and my team have been helping businesses, organizations and private clients implement technologies that simplify life and make work more efficient.",
+                about_what_we_do: "💡 What we do:",
+                
+                // Services
+                services_title: "My services",
+                service1_title: "Website development",
+                service1_desc: "Creating a website that is clear to you and your clients. From idea to launch - I take care of everything.",
+                service1_feat1: "✓ Modern design",
+                service1_feat2: "✓ Works on all devices",
+                service1_feat3: "✓ Fast loading",
+                service1_feat4: "✓ Easy to update",
+                
+                service2_title: "Automation",
+                service2_desc: "I automate routine tasks - you save time and money, focusing on what's important.",
+                service2_feat1: "✓ Data processing",
+                service2_feat2: "✓ System integration",
+                service2_feat3: "✓ Reports and analytics",
+                service2_feat4: "✓ Time saving",
+                
+                service3_title: "IT consulting",
+                service3_desc: "I explain technical things in simple language and offer optimal solutions for your business.",
+                service3_feat1: "✓ Current systems audit",
+                service3_feat2: "✓ Development planning",
+                service3_feat3: "✓ Technology selection",
+                service3_feat4: "✓ Clear recommendations",
+                
+                service4_title: "Security systems",
+                service4_desc: "Video surveillance, access control, security systems from private homes to large enterprises.",
+                service4_feat1: "✓ Video surveillance",
+                service4_feat2: "✓ Access control",
+                service4_feat3: "✓ Security systems",
+                service4_feat4: "✓ Remote monitoring",
+                
+                service5_title: "IT infrastructure",
+                service5_desc: "Setting up servers, networks, security systems and backup solutions for your business.",
+                service5_feat1: "✓ Server setup",
+                service5_feat2: "✓ Network security",
+                service5_feat3: "✓ Backup solutions",
+                service5_feat4: "✓ 24/7 support",
+                
+                service6_title: "Electronics & IoT",
+                service6_desc: "Development and assembly of electronic devices, sensors, controllers and turnkey IoT solutions.",
+                service6_feat1: "✓ Industrial controllers",
+                service6_feat2: "✓ IoT sensors",
+                service6_feat3: "✓ Production automation",
+                service6_feat4: "✓ Smart home",
+                
+                // Companies
+                companies_title: "Trust the professional",
+                companies_desc: "More than 50 successful projects for companies of different scales - from startups to large businesses",
+                stats_projects: "Successful projects",
+                stats_experience: "Years of experience",
+                stats_clients: "Satisfied clients",
+                
+                // Contact
+                contact_title: "Ready to start a project?",
+                contact_desc: "Contact me in a convenient way - I will respond within an hour!",
+                contact_call: "Call",
+                contact_fast_reply: "Quick reply",
+                contact_work_area: "I work throughout Russia",
+                contact_work_desc: "I solve most tasks remotely. Meetings via Zoom/Skype. Business trips are possible for large projects.",
+                
+                // Footer
+                footer_subtitle: "Software Engineer • IT Consultant • Freelancer",
+                footer_copyright: "© 2024 All rights reserved • Made with ❤️ for your business",
+                
+                // Modal
+                modal_title: "Contact me",
+                modal_call: "📞 Call: +7 (XXX) XXX-XX-XX",
+                modal_close: "Close"
+            },
+            
+            tj: {
+                // Navigation
+                nav_about: "Дар бораи ман",
+                nav_services: "Хизматрасонӣ",
+                nav_companies: "Муштариён",
+                nav_contact: "Тамос",
+                contact_button: "Тамос гиред",
+                
+                // Hero section
+                hero_greeting: "Салом, ман",
+                hero_title: "муҳандиси барномасоз ҳастам",
+                hero_description: "Ҳалҳои рақамии боэътимод ва фаҳмо эҷод мекунам. Ба тиҷорат бо кӯмаки технологияҳои муосир рушд кардан кӯмак мекунам.",
+                hero_call: "📞 Ба ман занг занед",
+                hero_telegram: "💬 Ба Telegram нависед",
+                
+                // About section
+                about_title: "Дар бораи ман",
+                about_intro: "Номи ман <strong class=\"text-primary\">Комил</strong> аст. Зиёда аз <strong class=\"text-primary\">7 сол</strong> аст, ки ман бо дастаи худ ба тиҷоратҳо, ташкилотҳо ва муштариёни хусусӣ дар татбиқи технологияҳое кӯмак мекунам, ки зиндагиро осон ва корро самаранок мекунанд.",
+                about_what_we_do: "💡 Мо чӣ кор мекунем:",
+                
+                // Services
+                services_title: "Хизматрасонии ман",
+                service1_title: "Сомона таҳти калид",
+                service1_desc: "Эҷоди сомонае, ки барои шумо ва муштариёнатон фаҳмо бошад. Аз ғоя то роҳандозӣ — ҳамаашро ба зимма мегирам.",
+                service1_feat1: "✓ Дизайни муосир",
+                service1_feat2: "✓ Дар ҳамаи дастгоҳҳо кор мекунад",
+                service1_feat3: "✓ Боркунии зуд",
+                service1_feat4: "✓ Осон нав мекунад",
+                
+                service2_title: "Автоматсозӣ",
+                service2_desc: "Вазифаҳои маъмулиро автоматӣ мекунам — шумо вақт ва пул сарфа мекунед ва ба муҳим диққат медиҳед.",
+                service2_feat1: "✓ Коркарди маълумот",
+                service2_feat2: "✓ Якҷоясозии системаҳо",
+                service2_feat3: "✓ Ҳисоботҳо ва таҳлил",
+                service2_feat4: "✓ Сарфаи вақт",
+                
+                service3_title: "Маслиҳатдиҳии IT",
+                service3_desc: "Техникиро бо забони оддӣ шарҳ медиҳам ва ҳалҳои беҳтаринро барои тиҷорати шумо пешниҳод мекунам.",
+                service3_feat1: "✓ Аудити системаҳои ҷорӣ",
+                service3_feat2: "✓ Нақшакашии рушд",
+                service3_feat3: "✓ Интихоби технологияҳо",
+                service3_feat4: "✓ Тавсияҳои фаҳмо",
+                
+                service4_title: "Системаҳои амният",
+                service4_desc: "Назорати видеоӣ, назорати дастрасӣ, системаҳои амният аз хонаҳои хусусӣ то корхонаҳои калон.",
+                service4_feat1: "✓ Назорати видеоӣ",
+                service4_feat2: "✓ Назорати дастрасӣ",
+                service4_feat3: "✓ Системаҳои амният",
+                service4_feat4: "✓ Назорати дурдаст",
+                
+                service5_title: "Инфрасохтори IT",
+                service5_desc: "Танзими серверҳо, шабакаҳо, системаҳои амният ва ҳалҳои захиравӣ барои тиҷорати шумо.",
+                service5_feat1: "✓ Танзими серверҳо",
+                service5_feat2: "✓ Амнияти шабака",
+                service5_feat3: "✓ Захиракунӣ",
+                service5_feat4: "✓ Дастгирии 24/7",
+                
+                service6_title: "Электроника ва IoT",
+                service6_desc: "Таҳия ва ҷамъоварии дастгоҳҳои электронӣ, сенсорҳо, контроллерҳо ва ҳалҳои IoT таҳти калид.",
+                service6_feat1: "✓ Контроллерҳои саноатӣ",
+                service6_feat2: "✓ Сенсорҳои IoT",
+                service6_feat3: "✓ Автоматсозии истеҳсолот",
+                service6_feat4: "✓ Хонаи ақлмад",
+                
+                // Companies
+                companies_title: "Ба касби профессионалӣ бовар мекунанд",
+                companies_desc: "Зиёда аз 50 лоиҳаи муваффақ барои ширкатҳои миқёси гуногун — аз стартапҳо то тиҷорати калон",
+                stats_projects: "Лоиҳаҳои муваффақ",
+                stats_experience: "Солҳои таҷриба",
+                stats_clients: "Муштариёни қаноатманд",
+                
+                // Contact
+                contact_title: "Барои оғози лоиҳа омедаед?",
+                contact_desc: "Бо роҳи қулай бо ман тамос гиред — дар як соат ҷавоб медиҳам!",
+                contact_call: "Занг занед",
+                contact_fast_reply: "Ҷавоби зуд",
+                contact_work_area: "Дар тамоми Русия кор мекунам",
+                contact_work_desc: "Аксари масъалаҳоро аз дур ҳал мекунам. Мулоқот тавассути Zoom/Skype. Барои лоиҳаҳои калон сафарҳои корӣ имконпазир аст.",
+                
+                // Footer
+                footer_subtitle: "Муҳандиси барномасоз • Маслиҳатчии IT • Фрилансер",
+                footer_copyright: "© 2024 Ҳамаи ҳуқуқҳо ҳифз шудаанд • Бо ❤️ барои тиҷорати шумо сохта шуд",
+                
+                // Modal
+                modal_title: "Бо ман тамос гиред",
+                modal_call: "📞 Занг занед: +7 (XXX) XXX-XX-XX",
+                modal_close: "Пӯшед"
+            }
+        };
+
+        let currentLanguage = 'ru';
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact functions
+        window.callPhone = function() {
+            // Replace with actual phone number
+            window.location.href = 'tel:+7XXXXXXXXXX';
+        };
+
+        window.openTelegram = function() {
+            // Replace with actual Telegram username
+            window.open('https://t.me/komil_dev', '_blank');
+        };
+
+        window.openWhatsApp = function() {
+            // Replace with actual phone number
+            window.open('https://wa.me/7XXXXXXXXXX', '_blank');
+        };
+
+        window.openContactModal = function() {
+            document.getElementById('contactModal').classList.remove('hidden');
+        };
+
+        window.closeContactModal = function() {
+            document.getElementById('contactModal').classList.add('hidden');
+        };
+
+        // Close modal on outside click
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+
+        // Simple animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Hero section should be visible immediately
+        document.querySelector('section').style.opacity = '1';
+        document.querySelector('section').style.transform = 'translateY(0)';
+
+        // Language Detection and Switching
+        function detectLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            
+            if (browserLang.startsWith('en')) {
+                return 'en';
+            } else if (browserLang.startsWith('tg') || browserLang.startsWith('tj')) {
+                return 'tj';
+            } else {
+                return 'ru'; // Default to Russian
+            }
+        }
+
+        function updateLanguageUI(lang) {
+            const flags = { ru: '🇷🇺', en: '🇺🇸', tj: '🇹🇯' };
+            const codes = { ru: 'RU', en: 'EN', tj: 'TJ' };
+            
+            document.getElementById('currentFlag').textContent = flags[lang];
+            document.getElementById('currentLangCode').textContent = codes[lang];
+        }
+
+        function translatePage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    // Check if translation contains HTML
+                    if (translations[lang][key].includes('<')) {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+        }
+
+        window.switchLanguage = function(lang) {
+            currentLanguage = lang;
+            updateLanguageUI(lang);
+            translatePage(lang);
+            document.getElementById('languageDropdown').classList.add('hidden');
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        };
+
+        // Language switcher dropdown
+        document.getElementById('languageSwitcher').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('languageDropdown').classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('#languageSwitcher')) {
+                document.getElementById('languageDropdown').classList.add('hidden');
+            }
+        });
+
+
+
+
+
+        // Initialize language
+        const savedLang = localStorage.getItem('preferredLanguage') || detectLanguage();
+        switchLanguage(savedLang);
+    </script>
+</body>
 </html>
