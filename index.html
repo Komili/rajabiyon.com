@@ -135,7 +135,7 @@
                     <!-- Language Switcher -->
                     <div class="relative">
                         <button id="languageSwitcher" class="flex items-center gap-2 px-3 py-2 text-secondary hover:text-primary transition-colors">
-                            <span id="currentFlag">🇷🇺</span>
+                            <!-- <span id="currentFlag">🇷🇺</span> -->
                             <span id="currentLangCode" class="text-sm font-medium">RU</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -955,7 +955,7 @@
         }
 
         function updateLanguageUI(lang) {
-            //const flags = { ru: '🇷🇺', en: '🇺🇸', tj: '🇹🇯' };
+            const flags = { ru: '🇷🇺', en: '🇺🇸', tj: '🇹🇯' };
             const codes = { ru: 'RU', en: 'EN', tj: 'TJ' };
             
             document.getElementById('currentFlag').textContent = flags[lang];
